@@ -1,4 +1,4 @@
-package com.weemusic.android.util
+package com.weemusic.android.shared.util
 
 import android.content.Context
 import android.net.ConnectivityManager

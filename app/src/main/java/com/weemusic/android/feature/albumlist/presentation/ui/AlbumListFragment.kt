@@ -1,4 +1,4 @@
-package com.weemusic.android.feature.albumlist.ui
+package com.weemusic.android.feature.albumlist.presentation.ui
 
 import android.os.Bundle
 import android.view.*
@@ -6,13 +6,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.weemusic.android.R
 import com.weemusic.android.databinding.AlbumListFragmentBinding
-import com.weemusic.android.feature.albumlist.adapter.AlbumsAdapter
-import com.weemusic.android.feature.albumlist.viewmodel.AlbumListViewModel
+import com.weemusic.android.feature.albumlist.presentation.adapter.AlbumsAdapter
+import com.weemusic.android.feature.albumlist.presentation.viewmodel.AlbumListViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class AlbumListFragment : Fragment() {
@@ -45,9 +44,9 @@ class AlbumListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
         viewModel.retrieveAlbums()
-        viewModel.topAlbums.observe(viewLifecycleOwner, {
-            adapter.updateList(it)
-        })
+        observeError()
+        observeAlbums()
+
     }
 
 
@@ -61,17 +60,17 @@ class AlbumListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_album -> {
-                Toast.makeText(requireContext(), "Album", Toast.LENGTH_SHORT).show();
+                viewModel.retrieveAndSortAlbumByAlbum()
                 true
 
             }
             R.id.action_price -> {
-                Toast.makeText(requireContext(), "Price", Toast.LENGTH_SHORT).show();
+                viewModel.retrieveAndSortAlbumByPrice()
                 true
 
             }
-            R.id.action_title -> {
-                Toast.makeText(requireContext(), "Title", Toast.LENGTH_SHORT).show()
+            R.id.action_artist -> {
+                viewModel.retrieveAndSortAlbumByArtist()
                 true
 
             }
@@ -81,12 +80,26 @@ class AlbumListFragment : Fragment() {
 
     }
 
+    private fun observeAlbums() {
+        viewModel.topAlbums.observe(viewLifecycleOwner, {
+            adapter.updateList(it)
+        })
+    }
+
+    private fun observeError() {
+        viewModel.error.observe(viewLifecycleOwner, {
+            if (it != null) {
+                Toast.makeText(requireContext(), "Error: $it", Toast.LENGTH_SHORT).show();
+            }
+        })
+    }
+
 
     private fun setupAdapter() {
         adapter = AlbumsAdapter(emptyList())
         binding.rvFeed.adapter = adapter
         binding.rvFeed.setHasFixedSize(true)
-        binding.rvFeed.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvFeed.layoutManager = GridLayoutManager(requireContext(), 2)
     }
 
     override fun onDestroy() {

@@ -1,7 +1,6 @@
-package com.weemusic.android.feature.albumlist.model
+package com.weemusic.android.feature.albumlist.presentation.model
 
-import com.weemusic.android.domain.Album
-import org.threeten.bp.LocalDate
+import com.weemusic.android.model.Album
 
 data class AlbumListUIModel(
     val id: Int,
@@ -9,7 +8,8 @@ data class AlbumListUIModel(
     val images: List<String>,
     val title: String,
     val artist: String,
-    val releaseDate: LocalDate
+    val priceDbl: Double,
+    val price: String
 )
 
 
@@ -23,5 +23,6 @@ fun Album.toAlbumListUIModel() =
         images = images,
         title = title,
         artist = artist,
-        releaseDate = releaseDate
+        priceDbl = priceDbl,
+        price = price
     )

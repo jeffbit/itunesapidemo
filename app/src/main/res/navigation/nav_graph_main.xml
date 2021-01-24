@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/albumListFragment"
-        android:name="com.weemusic.android.feature.albumlist.ui.AlbumListFragment"
+        android:name="com.weemusic.android.feature.albumlist.presentation.ui.AlbumListFragment"
         android:label="AlbumListFragment" />
 </navigation>

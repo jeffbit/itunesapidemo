@@ -1,7 +1,8 @@
-package com.weemusic.android.domain
+package com.weemusic.android.model
 
 import com.weemusic.android.data.model.FeedEntity
 import org.threeten.bp.LocalDate
+import org.threeten.bp.ZonedDateTime
 
 data class Album(
     val id: Int,
@@ -11,7 +12,9 @@ data class Album(
     val title: String,
     val artist: String,
     val category: String,
-    val releaseDate: LocalDate
+    val releaseDate: LocalDate,
+    val priceDbl: Double,
+    val price: String
 )
 
 
@@ -23,19 +26,21 @@ fun FeedEntity.Feed.Entry.toList(): List<String> {
 
 
 fun FeedEntity.Feed.Entry.ImReleaseDate.toDate(): LocalDate =
-    LocalDate.parse(this.label)
+    ZonedDateTime.parse(this.label).toLocalDate()
 
 
 fun FeedEntity.Feed.Entry.toAlbumModel(): Album {
     return Album(
-        id = id.label.toInt(),
+        id = id.attributes.imId.toInt(),
         name = imName.label,
         images = this.toList(),
         rights = rights.label,
         title = title.label,
         artist = imArtist.label,
         category = category.attributes.label,
-        releaseDate = imReleaseDate.toDate()
+        releaseDate = imReleaseDate.toDate(),
+        priceDbl = imPrice.attributes.amount.toDouble(),
+        price = imPrice.label
     )
 }
 

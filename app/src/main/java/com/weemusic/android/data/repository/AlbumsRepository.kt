@@ -1,11 +1,9 @@
 package com.weemusic.android.data.repository
 
-import com.weemusic.android.data.model.FeedEntity
-import com.weemusic.android.domain.Album
-import io.reactivex.Observable
+import com.weemusic.android.model.Album
 import io.reactivex.Single
 
 interface AlbumsRepository {
 
-    fun preform(): Result<Observable<List<Album>>>
+    fun preform(): Result<Single<List<Album>>>
 }

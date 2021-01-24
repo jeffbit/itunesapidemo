@@ -1,4 +1,4 @@
-package com.weemusic.android.feature.albumlist.adapter
+package com.weemusic.android.feature.albumlist.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.weemusic.android.R
-import com.weemusic.android.feature.albumlist.model.AlbumListUIModel
+import com.weemusic.android.feature.albumlist.presentation.model.AlbumListUIModel
 
 class AlbumsAdapter(private var albums: List<AlbumListUIModel>) :
     RecyclerView.Adapter<AlbumsAdapter.AlbumsViewHolder>() {
@@ -44,10 +44,12 @@ class AlbumsAdapter(private var albums: List<AlbumListUIModel>) :
             val ivCover: ImageView = itemView.findViewById(R.id.ivCover)
             val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
             val tvArtist: TextView = itemView.findViewById(R.id.tvArtist)
+            val tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
 
-            Picasso.with(itemView.context).load(album.images[0]).into(ivCover)
+            Picasso.with(itemView.context).load(album.images[2]).centerCrop().fit().into(ivCover)
             tvTitle.text = album.title
             tvArtist.text = album.artist
+            tvPrice.text = album.price
         }
     }
 

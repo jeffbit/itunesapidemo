@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.MainActivity">
+    tools:context=".shared.MainActivity">
     <item
         android:id="@+id/action_album"
         android:title="@string/album" />
@@ -8,6 +8,6 @@
         android:id="@+id/action_price"
         android:title="@string/price" />
     <item
-        android:id="@+id/action_title"
-        android:title="@string/title" />
+        android:id="@+id/action_artist"
+        android:title="@string/artist" />
 </menu>
