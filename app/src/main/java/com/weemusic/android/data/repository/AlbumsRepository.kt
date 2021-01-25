@@ -5,5 +5,5 @@ import io.reactivex.Single
 
 interface AlbumsRepository {
 
-    fun preform(): Result<Single<List<Album>>>
+    suspend fun returnTopAlbums(): Result<List<Album>>
 }
