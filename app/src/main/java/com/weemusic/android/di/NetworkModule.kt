@@ -4,11 +4,14 @@ import android.content.Context
 import com.weemusic.android.data.api.ItunesApi
 import com.weemusic.android.data.api.RetrofitClient
 import com.weemusic.android.shared.util.NetworkConnection
+import com.weemusic.android.shared.util.ResponseHandler
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
 
@@ -19,7 +22,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(): ItunesApi{
+    fun provideRetrofit(): ItunesApi {
         return RetrofitClient.iTunesApi
     }
 
@@ -30,6 +33,15 @@ object NetworkModule {
     }
 
 
+    @Provides
+    fun provideDispatcherIO(): CoroutineDispatcher {
+        return Dispatchers.IO
+    }
+
+    @Provides
+    fun provideResponseHandler(networkConnection: NetworkConnection): ResponseHandler {
+        return ResponseHandler(networkConnection = networkConnection)
+    }
 
 
 }

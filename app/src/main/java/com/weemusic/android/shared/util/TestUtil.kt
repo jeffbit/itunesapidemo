@@ -65,8 +65,8 @@ class TestUtil {
                         ),
                         imReleaseDate = FeedEntity.Feed.Entry.ImReleaseDate(
                             attributes = FeedEntity.Feed.Entry.ImReleaseDate.Attributes(
-                                label = "Music"
-                            ), label = "Music"
+                                label = "2020-11-13T00:00:00-07:00"
+                            ), label = "2020-11-13T00:00:00-07:00"
                         ),
                         link = FeedEntity.Feed.Entry.Link(
                             attributes = FeedEntity.Feed.Entry.Link.Attributes(

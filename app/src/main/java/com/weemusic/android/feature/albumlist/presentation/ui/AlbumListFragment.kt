@@ -43,6 +43,7 @@ class AlbumListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
+        observeProgress()
         viewModel.retrieveAlbums()
         observeError()
         observeAlbums()
@@ -83,13 +84,33 @@ class AlbumListFragment : Fragment() {
     private fun observeAlbums() {
         viewModel.topAlbums.observe(viewLifecycleOwner, {
             adapter.updateList(it)
+            adapter.notifyDataSetChanged()
         })
     }
 
     private fun observeError() {
-        viewModel.error.observe(viewLifecycleOwner, {
-            if (it != null) {
-                Toast.makeText(requireContext(), "Error: $it", Toast.LENGTH_SHORT).show();
+        viewModel.errorBoolean.observe(viewLifecycleOwner, { boolean ->
+            viewModel.error.observe(viewLifecycleOwner, { error ->
+                if (boolean != false) {
+                    Toast.makeText(requireContext(), "Network Issue: $error", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            })
+        })
+
+    }
+
+    private fun observeProgress() {
+        viewModel.progress.observe(viewLifecycleOwner, { boolean ->
+            if (boolean != true) {
+                //hide progress
+                binding.progressBar.visibility = View.GONE
+                binding.rvFeed.visibility = View.VISIBLE
+
+            } else {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.rvFeed.visibility = View.GONE
+
             }
         })
     }

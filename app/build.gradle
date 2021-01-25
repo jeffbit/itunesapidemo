@@ -10,6 +10,8 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.weemusic.android"
@@ -101,4 +103,12 @@ dependencies {
 
     //Mock
     testImplementation "io.mockk:mockk:1.10.4"
+
+    //Coroutine Testing
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2'
+
+    debugImplementation "androidx.fragment:fragment-testing:1.2.5"
+
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
 }
