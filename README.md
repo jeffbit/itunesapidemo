@@ -3,25 +3,10 @@
  </p>
 
 
-
-  <p align="center">
-    <br />
-    <a href="https://github.com/jeffbit/itunesapidemo"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/jeffbit/itunesapidemo/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/jeffbit/itunesapidemo/issues">Request Feature</a>
- 
-  </p>
-</p>
-
-
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-* [Future Updates](#future-updates)
 * [Built With](#built-with)
 * [Screenshots](#screenshot)
 * [Contact](#contact)
