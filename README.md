@@ -18,7 +18,8 @@
 <p>Sample app that displays Top Albums  that can be sorted by Album, Price, or Artist.
   Albums are displayed with Image, Title, Artist, and cost. Due to time constraints application is single screen and has minimal tests.
 </p>
-<p> There are 2 different branches. 1 is built using Kotlin Coroutines and the other is built using RxJava. 
+<p> There are 2 different branches. 1 is built using Kotlin Coroutines <a href ="https://github.com/jeffbit/itunesapidemo/tree/concept/feature-coroutines">Branch</a>
+ and the other is built using RxJava. 
 
 
 
