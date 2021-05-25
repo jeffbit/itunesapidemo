@@ -1,4 +1,4 @@
- <h3 align="center">ITunes API Demo</h3>
+ <h1 align="center">ITunes API Demo</h1>
  <p align = "center">
  </p>
 
